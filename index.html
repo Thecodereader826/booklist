@@ -2,78 +2,219 @@
 <html>
 
 <head>
-    <title> MY book club books</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Book Club Books</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            height: 100vh;
+            background-color: #f4f4f4;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        table {
+            width: 80%;
+            border-collapse: collapse;
+            margin: 20px auto;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        caption {
+            caption-side: top;
+            font-size: 1.5em;
+            margin-bottom: 10px;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        th,
+        td {
+            padding: 10px;
+            text-align: center;
+            border: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #414850;
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        .status {
+            font-size: 1.5em;
+        }
+
+        tr:hover {
+            background-color: #f1c40f;
+            /* A nice yellow color */
+            transform: scale(1.02);
+            transition: transform 0.3s ease-in-out;
+            color: #ffffff;
+            background-color: #a3a79c;
+            /* A darker blue color */
+            transition: background-color 0.3s, color 0.3s;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            animation: shake 0.2s;
+        }
+
+        @keyframes shake {
+
+            0%,
+            100% {
+                transform: translateX(0);
+            }
+
+            25% {
+                transform: translateX(-5px);
+            }
+
+            50% {
+                transform: translateX(5px);
+            }
+
+            75% {
+                transform: translateX(-5px);
+            }
+        }
+
+        .emoji-key {
+            margin-top: 20px;
+            font-size: 1em;
+        }
+
+        .emoji-key p {
+            margin: 5px 0;
+        }
+
+        .emoji-key span {
+            font-size: 1.5em;
+            margin-right: 10px;
+        }
+    </style>
 </head>
 
 <body>
     <table border="1">
+        <caption>My Book Club Books</caption>
         <tr>
-            <th>index</th>
+            <th>Index</th>
             <th>Author</th>
             <th>Date</th>
             <th>Title</th>
+            <th>Status</th>
         </tr>
         <tr>
-            <td>1.</td>
+            <td class="index"></td>
             <td>Alexander. K.</td>
             <td>(2022)</td>
             <td>The door of no return</td>
+            <td class="status">2</td>
         </tr>
         <tr>
-            <td>2.</td>
+            <td class="index"></td>
             <td>Cohen, E. B.</td>
             <td>(2023)</td>
             <td>Two tribes. Heartdrum.</td>
+            <td class="status">1</td>
         </tr>
         <tr>
-            <td>3.</td>
+            <td class="index"></td>
             <td>Day, N.</td>
             <td>(2023)</td>
             <td>The Mona Lisa Vanishes</td>
+            <td class="status">1</td>
         </tr>
         <tr>
-            <td>4.</td>
+            <td class="index"></td>
             <td>Giles, C. D.</td>
             <td>(2023)</td>
             <td>Not an Easy Win. Random</td>
+            <td class="status">1</td>
         </tr>
         <tr>
-            <td>5.</td>
+            <td class="index"></td>
             <td>lackey, L.</td>
             <td>(2023)</td>
             <td>Farther than the Moon.</td>
+            <td class="status">1</td>
         </tr>
         <tr>
-            <td>6.</td>
+            <td class="index"></td>
             <td>Lerner, J.</td>
             <td>(2023)</td>
             <td>A Work In Progress. Alladin</td>
+            <td class="status">1</td>
         </tr>
         <tr>
-            <td>7.</td>
+            <td class="index"></td>
             <td>Maldonnado, T.</td>
             <td>(2023)</td>
             <td>Hands. Nancy Paulen</td>
+            <td class="status">1</td>
         </tr>
         <tr>
-            <td>8.</td>
+            <td class="index"></td>
             <td>Martin, P.</td>
             <td>(2023)</td>
             <td>Mexikid. Dial Books.</td>
+            <td class="status">1</td>
         </tr>
         <tr>
-            <td>9.</td>
+            <td class="index"></td>
             <td>Swinarski, C.</td>
             <td>(2023)</td>
             <td>What Happened To rachel Riley. Quill Tree Books.</td>
+            <td class="status">1</td>
         </tr>
         <tr>
-            <td>10.</td>
+            <td class="index"></td>
             <td>Tavares, M.</td>
             <td>(2023)</td>
             <td>Hoops. Candlewich Press.</td>
+            <td class="status">1</td>
         </tr>
     </table>
+
+    <div class="emoji-key">
+        <h3>
+            <center>Status Key</center>
+        </h3>
+        <p><span>😕</span> Status 1: Not Read Yet</p>
+        <p><span>🧐</span> Status 2: Currently Reading</p>
+        <p><span>🤓</span> Status 3: Finished Reading</p>
+    </div>
+
+    <!--javascript can go right before /body so you do not need to manually update the index-->
+    <script>
+        let rows = document.querySelectorAll("td.index");
+        rows.forEach((row, index) => {
+            row.textContent = index + 1 + ".";
+        });
+    </script>
+
+    <script>
+        let statuses = document.querySelectorAll("td.status");
+        statuses.forEach((status) => {
+            if (status.textContent == "1") {
+                status.textContent = "😕";
+
+            } else if (status.textContent == "2") {
+                status.textContent = "🧐";
+
+            } else {
+                status.textContent = "🤓";
+            }
+        });
+    </script>
 </body>
 
 </html>
